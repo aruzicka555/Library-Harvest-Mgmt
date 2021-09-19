@@ -5,7 +5,7 @@
     <AssemblyTitle>Landis.Library.HarvestManagement-v4</AssemblyTitle>
     <AssemblyCompany>LANDIS-II Foundation</AssemblyCompany>
     <AssemblyProduct>Landis.Library.HarvestManagement-v3</AssemblyProduct>    
-    <AssemblyVersion>4.3</AssemblyVersion>
+    <AssemblyVersion>4.3.1</AssemblyVersion>
     <AssemblyDescription>Harvest Library for LANDIS-II</AssemblyDescription>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
@@ -21,7 +21,7 @@
     <PackageTags>LANDIS-II;Landis;Library;Harvest Management</PackageTags>
     <Description>Harvest Library for LANDIS-II</Description>
     <PackageReleaseNotes>.NET Standard 2.0 update.</PackageReleaseNotes>
-    <FileVersion>4.3</FileVersion>
+    <FileVersion>4.3.1</FileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <WarningLevel>0</WarningLevel>

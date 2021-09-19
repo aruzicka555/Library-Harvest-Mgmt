@@ -16,5 +16,10 @@ namespace Landis.Library.HarvestManagement
         /// Paramter for list of species to plant at a site.
         /// </summary>
         public const string Plant = "Plant";
+
+        /// <summary>
+        /// Parameter for allowing patches to overlap when patch cutting.
+        /// </summary>
+        public const string AllowOverlap = "AllowOverlap";
     }
 }
