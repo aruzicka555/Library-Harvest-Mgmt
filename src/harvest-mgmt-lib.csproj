@@ -34,8 +34,8 @@
     <Reference Include="Landis.Library.AgeOnlyCohorts-v3">
       <HintPath>lib\Landis.Library.AgeOnlyCohorts-v3.dll</HintPath>
     </Reference>
-    <Reference Include="Landis.Library.BiomassCohorts-v3">
-      <HintPath>lib\Landis.Library.BiomassCohorts-v3.dll</HintPath>
+    <Reference Include="Landis.Library.BiomassCohorts-v4">
+      <HintPath>lib\Landis.Library.BiomassCohorts-v4.dll</HintPath>
     </Reference>
     <Reference Include="Landis.Library.Cohorts-v2">
       <HintPath>lib\Landis.Library.Cohorts-v2.dll</HintPath>
@@ -46,8 +46,8 @@
     <Reference Include="Landis.Library.SiteHarvest-v2">
       <HintPath>lib\Landis.Library.SiteHarvest-v2.dll</HintPath>
     </Reference>
-    <Reference Include="Landis.Library.Succession-v9">
-      <HintPath>lib\Landis.Library.Succession-v9.dll</HintPath>
+    <Reference Include="Landis.Library.Succession-v8">
+      <HintPath>lib\Landis.Library.Succession-v8.dll</HintPath>
     </Reference>
   </ItemGroup>
 

@@ -260,7 +260,8 @@ namespace Landis.Library.HarvestManagement
                     // Only queue up for a repeat harvest if cohorts were cut
                     if (this.isSingleRepeatPrescription && cohortCounts.AllSpecies > 0)
                     {
-                        stand.SetSiteAside(site, this.Name);
+                        // Make sure the correct stand is having sites queued in case of stand spreading
+                        SiteVars.Stand[site].SetSiteAside(site, this.name);
                     }
                 }
             }
