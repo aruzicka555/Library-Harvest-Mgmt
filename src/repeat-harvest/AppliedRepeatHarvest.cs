@@ -53,6 +53,7 @@ namespace Landis.Library.HarvestManagement
             }
             else {
                 isMultipleRepeatHarvest = true;
+                this.Prescription.IsMultipleRepeatPrescription = true;
                 setAside = SetAsideForMultipleHarvests;
             }
             this.reservedStands = new Queue<ReservedStand>();

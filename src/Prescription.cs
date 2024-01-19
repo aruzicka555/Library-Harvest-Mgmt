@@ -29,6 +29,7 @@ namespace Landis.Library.HarvestManagement
         private CohortCounts cohortCounts;
         private bool isSingleRepeatStep;
         protected bool isSingleRepeatPrescription;
+        protected bool isMultipleRepeatPrescription;
         protected bool isMultipleRepeatStep;
         protected bool harvestExactCells;
         private int repeatNumber = 0;
@@ -78,6 +79,23 @@ namespace Landis.Library.HarvestManagement
             get
             {
                 return isMultipleRepeatStep;
+            }
+        }
+
+        //---------------------------------------------------------------------
+
+        /// <summary>
+        /// Indicates if this is a multiple repeat prescription
+        /// </summary>
+        public bool IsMultipleRepeatPrescription
+        {
+            set
+            {
+                isMultipleRepeatPrescription = value;
+            }
+            get
+            {
+                return isMultipleRepeatPrescription;
             }
         }
 
@@ -278,7 +296,7 @@ namespace Landis.Library.HarvestManagement
                     HarvestSite(site, stand);
 
                     // Only queue up for a repeat harvest if cohorts were cut
-                    if ((this.isSingleRepeatPrescription || harvestExactCells) && cohortCounts.AllSpecies > 0)
+                    if ((this.isSingleRepeatPrescription || (IsMultipleRepeatPrescription && harvestExactCells)) && cohortCounts.AllSpecies > 0)
                     {
                         // Make sure the correct stand is having sites queued in case of stand spreading
                         SiteVars.Stand[site].SetSiteAside(site, this.name);
