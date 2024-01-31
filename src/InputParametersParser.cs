@@ -278,6 +278,10 @@ namespace Landis.Library.HarvestManagement
                     if (ReadOptionalVar(repeatExactCells))
                     {
                         harvestExactCells = repeatExactCells.Value;
+                        if (!(siteSelector is PatchCutting) && harvestExactCells == false)
+                        {
+                            throw new Exception("RepeatExactCells can only be false with Patch Cutting Site Selection.");
+                        }
                     }
                     if (repeatSet)
                     {
