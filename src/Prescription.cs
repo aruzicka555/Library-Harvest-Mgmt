@@ -29,6 +29,9 @@ namespace Landis.Library.HarvestManagement
         private CohortCounts cohortCounts;
         private bool isSingleRepeatStep;
         protected bool isSingleRepeatPrescription;
+        protected bool isMultipleRepeatPrescription;
+        protected bool isMultipleRepeatStep;
+        protected bool harvestExactCells;
         private int repeatNumber = 0;
         
         //---------------------------------------------------------------------
@@ -59,6 +62,40 @@ namespace Landis.Library.HarvestManagement
             get
             {
                 return isSingleRepeatStep;
+            }
+        }
+
+        //---------------------------------------------------------------------
+
+        /// <summary>
+        /// Indicates if this is a repeat harvest for a multiple repeat prescription
+        /// </summary>
+        public bool IsMultipleRepeatStep
+        {
+            set
+            {
+                isMultipleRepeatStep = value;
+            }
+            get
+            {
+                return isMultipleRepeatStep;
+            }
+        }
+
+        //---------------------------------------------------------------------
+
+        /// <summary>
+        /// Indicates if this is a multiple repeat prescription
+        /// </summary>
+        public bool IsMultipleRepeatPrescription
+        {
+            set
+            {
+                isMultipleRepeatPrescription = value;
+            }
+            get
+            {
+                return isMultipleRepeatPrescription;
             }
         }
 
@@ -206,6 +243,7 @@ namespace Landis.Library.HarvestManagement
             this.preventEstablishment = preventEstablishment;
             this.isSingleRepeatStep = false;
             this.isSingleRepeatPrescription = false;
+            this.isMultipleRepeatStep = false;
 
             cohortCounts = new CohortCounts();
         }
@@ -239,8 +277,8 @@ namespace Landis.Library.HarvestManagement
             // SelectSites(stand) is where either complete, complete stand spreading, or partial stand
             // spreading are activated.
             // tjs - This is what gets the sites that will be harvested
-            
-            if (isSingleRepeatStep)
+
+            if (isSingleRepeatStep || (isMultipleRepeatStep && harvestExactCells))
             {
                 foreach (ActiveSite site in stand)
                 {
@@ -258,9 +296,10 @@ namespace Landis.Library.HarvestManagement
                     HarvestSite(site, stand);
 
                     // Only queue up for a repeat harvest if cohorts were cut
-                    if (this.isSingleRepeatPrescription && cohortCounts.AllSpecies > 0)
+                    if ((this.isSingleRepeatPrescription || (IsMultipleRepeatPrescription && harvestExactCells)) && cohortCounts.AllSpecies > 0)
                     {
-                        stand.SetSiteAside(site, this.Name);
+                        // Make sure the correct stand is having sites queued in case of stand spreading
+                        SiteVars.Stand[site].SetSiteAside(site, this.name);
                     }
                 }
             }

@@ -1,7 +1,7 @@
 // This file is part of the Harvest Management library for LANDIS-II.
 
 using Landis.Core;
-using Landis.Library.AgeOnlyCohorts;
+using Landis.Library.UniversalCohorts;
 using Landis.SpatialModeling;
 using Landis.Utilities;
 using System;
@@ -126,13 +126,13 @@ namespace Landis.Library.HarvestManagement
                     {
                         foreach (ICohort cohort in SiteVars.Cohorts[site][species])
                         {
-                            if (rule.SpeciesList.Contains(species.Name) && rule.RuleAgeRange.Contains(cohort.Age)) 
+                            if (rule.SpeciesList.Contains(species.Name) && rule.RuleAgeRange.Contains(cohort.Data.Age)) 
                             {
                                 goodSite = true;
                             }
                         
                             // Some other species, NOT in the list
-                            if (!rule.SpeciesList.Contains(species.Name) && rule.RuleAgeRange.Contains(cohort.Age))   
+                            if (!rule.SpeciesList.Contains(species.Name) && rule.RuleAgeRange.Contains(cohort.Data.Age))   
                             {
                                 otherSpecies = true;
                             }

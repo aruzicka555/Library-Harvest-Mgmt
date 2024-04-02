@@ -1,7 +1,7 @@
 ﻿// This file is part of the Harvest Management library for LANDIS-II.
 
 using Landis.Core;
-using Landis.Library.AgeOnlyCohorts;
+using Landis.Library.UniversalCohorts;
 using Landis.SpatialModeling;
 
 namespace Landis.Library.HarvestManagement
@@ -167,8 +167,8 @@ namespace Landis.Library.HarvestManagement
             {
                 foreach (ICohort cohort in speciesCohorts)
                 {
-                    if (cohort.Age > max)
-                        max = cohort.Age;
+                    if (cohort.Data.Age > max)
+                        max = cohort.Data.Age;
                 }
             }
             return max;

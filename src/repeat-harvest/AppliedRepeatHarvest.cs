@@ -53,6 +53,7 @@ namespace Landis.Library.HarvestManagement
             }
             else {
                 isMultipleRepeatHarvest = true;
+                this.Prescription.IsMultipleRepeatPrescription = true;
                 setAside = SetAsideForMultipleHarvests;
             }
             this.reservedStands = new Queue<ReservedStand>();
@@ -165,7 +166,8 @@ namespace Landis.Library.HarvestManagement
         /// current time step.
         /// </summary>
         public void HarvestReservedStands()
-        {   
+        {
+            this.Prescription.IsMultipleRepeatStep = true;
             while (reservedStands.Count > 0 &&
                    reservedStands.Peek().NextTimeToHarvest <= Model.Core.CurrentTime)
             {
@@ -204,6 +206,7 @@ namespace Landis.Library.HarvestManagement
                     stand.ResetRepeatNumber();
                 }
             }
+            this.Prescription.IsMultipleRepeatStep = false;
         }
     }
 }

@@ -49,6 +49,7 @@ namespace Landis.Library.HarvestManagement
             public const string StandAdjacency = "StandAdjacency";
             public const string PresalvageYears = "PresalvageYears";
             public const string TimesToRepeat = "TimesToRepeat";
+            public const string RepeatExactCells = "RepeatExactCells";
         }
 
         //---------------------------------------------------------------------
@@ -208,6 +209,8 @@ namespace Landis.Library.HarvestManagement
             InputVar<int> singleRepeat = new InputVar<int>(Names.SingleRepeat);
             InputVar<int> multipleRepeat = new InputVar<int>(Names.MultipleRepeat);
             InputVar<int> timesToRepeat = new InputVar<int>(Names.TimesToRepeat);
+            InputVar<bool> repeatExactCells = new InputVar<bool>(Names.RepeatExactCells);
+            bool harvestExactCells = true;
 
             int nameLineNumber = LineNumber;
             InputVar<string> prescriptionName = new InputVar<string>(Names.Prescription);
@@ -272,6 +275,14 @@ namespace Landis.Library.HarvestManagement
                                                           harvestTimestep);
 
                     bool repeatSet = ReadOptionalVar(timesToRepeat);
+                    if (ReadOptionalVar(repeatExactCells))
+                    {
+                        harvestExactCells = repeatExactCells.Value;
+                        if (!(siteSelector is PatchCutting) && harvestExactCells == false)
+                        {
+                            throw new Exception("RepeatExactCells can only be false with Patch Cutting Site Selection.");
+                        }
+                    }
                     if (repeatSet)
                     {
                         if (timesToRepeat.Value == 0)
@@ -282,7 +293,8 @@ namespace Landis.Library.HarvestManagement
                         {
                             throw new Exception("Multiple Repeat requires more than one repeat, use Single Repeat instead.");
                         }
-                        prescriptions.Add(new RepeatHarvest(name,
+                    }
+                    prescriptions.Add(new RepeatHarvest(name,
                                                         rankingMethod,
                                                         siteSelector,
                                                         cohortCutter,
@@ -290,19 +302,8 @@ namespace Landis.Library.HarvestManagement
                                                         minTimeSinceDamage,
                                                         preventEstablishment,
                                                         interval,
-                                                        timesToRepeat.Value));
-                    }
-                    else
-                    {
-                        prescriptions.Add(new RepeatHarvest(name,
-                                                        rankingMethod,
-                                                        siteSelector,
-                                                        cohortCutter,
-                                                        speciesToPlant,
-                                                        minTimeSinceDamage,
-                                                        preventEstablishment,
-                                                        interval));
-                    }
+                                                        timesToRepeat.Value == null ? 0 : timesToRepeat.Value,
+                                                        harvestExactCells));
                 }
                 else {
                     prescriptions.Add(new Prescription(name,

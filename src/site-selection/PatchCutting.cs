@@ -62,13 +62,17 @@ namespace Landis.Library.HarvestManagement
             }
             else
             {
-                if (allowOverlap.Equals("AllowOverlap"))
+                if (allowOverlap.Equals(ParameterNames.AllowOverlap))
                 {
                     this.allowOverlap = true;
                 }
                 else
                 {
-                    this.allowOverlap = false;
+                    string[] patchCuttingList = new string[]{"Valid PatchCutting Option Keywords:",
+                                                   "  " + ParameterNames.AllowOverlap};
+                    throw new InputValueException(allowOverlap,
+                                                  allowOverlap + " is not a valid PatchCutting Option",
+                                                  new MultiLineText(patchCuttingList));
                 }
             }
         }

@@ -278,7 +278,7 @@ namespace Landis.Library.HarvestManagement
             foreach (AppliedPrescription prescription in prescriptions) {
                 //Model.Core.UI.WriteLine("      Looping through prescriptions... {0}.", prescription.Prescription.Name);
 
-                if (prescription is AppliedRepeatHarvest) 
+                if (prescription is AppliedRepeatHarvest)
                 {
                     //prescription.Prescription.SiteSelectionMethod = new CompleteStand();
                     //Model.Core.UI.WriteLine("      Attempting to Re-Harvest {0}.", prescription.Prescription.Name);

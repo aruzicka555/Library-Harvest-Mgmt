@@ -48,6 +48,20 @@ namespace Landis.Library.HarvestManagement
         //---------------------------------------------------------------------
 
         /// <summary>
+        /// Determines whether or not a Multiple Repeat Prescription will harvest the exact same cells in the repeat step.
+        /// Defaults to true
+        /// </summary>
+        public bool HarvestExactCells
+        {
+            get
+            {
+                return harvestExactCells;
+            }
+        }
+
+        //---------------------------------------------------------------------
+
+        /// <summary>
         /// The list of stands that were harvested during the most recent call
         /// to the Harvest method.
         /// </summary>
@@ -68,13 +82,14 @@ namespace Landis.Library.HarvestManagement
                              int                  minTimeSinceDamage,
                              bool                 preventEstablishment,
                              int                  interval,
-                             int                  timesToRepeat = 0)
+                             int                  timesToRepeat = 0,
+                             bool                 harvestExactCells = true)
             : base(name, rankingMethod, siteSelector, cohortCutter, speciesToPlant, minTimeSinceDamage, preventEstablishment)
         {
             this.interval = interval;
             this.spreadingSiteSelector = siteSelector as StandSpreading;
             this.harvestedStands = new List<Stand>();
-
+            this.harvestExactCells = harvestExactCells;
             if (timesToRepeat > 1)
             {
                 this.timesToRepeat = timesToRepeat;

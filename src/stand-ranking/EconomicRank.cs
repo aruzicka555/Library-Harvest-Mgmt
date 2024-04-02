@@ -1,6 +1,6 @@
 // This file is part of the Harvest Management library for LANDIS-II.
 
-using Landis.Library.AgeOnlyCohorts;
+using Landis.Library.UniversalCohorts;
 using Landis.SpatialModeling;
 
 namespace Landis.Library.HarvestManagement
@@ -37,8 +37,8 @@ namespace Landis.Library.HarvestManagement
                     EconomicRankParameters rankingParameters = rankTable[speciesCohorts.Species];
                     foreach (ICohort cohort in speciesCohorts) {
                         if (rankingParameters.MinimumAge > 0 &&
-                            rankingParameters.MinimumAge <= cohort.Age)
-                            siteEconImportance += (double) rankingParameters.Rank / rankingParameters.MinimumAge * cohort.Age;
+                            rankingParameters.MinimumAge <= cohort.Data.Age)
+                            siteEconImportance += (double) rankingParameters.Rank / rankingParameters.MinimumAge * cohort.Data.Age;
                     }
                 }
                 standEconImportance += siteEconImportance;
