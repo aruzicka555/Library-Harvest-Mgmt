@@ -83,7 +83,7 @@ namespace Landis.Library.HarvestManagement
         /// </summary>
         public static void Initialize()
         {
-            Cohorts = Model.Core.GetSiteVar<ISiteCohorts>("Succession.AgeCohorts");
+            Cohorts = Model.Core.GetSiteVar<ISiteCohorts>("Succession.UniversalCohorts");
 
             ManagementArea   = Model.Core.Landscape.NewSiteVar<ManagementArea>();
             Stand            = Model.Core.Landscape.NewSiteVar<Stand>();
