@@ -14,7 +14,7 @@ namespace Landis.Library.HarvestManagement
         /// <summary>
         /// The site variable with cohorts (accessed as age-only cohorts).
         /// </summary>
-        public static ISiteVar<ISiteCohorts> Cohorts { get; private set; }
+        public static ISiteVar<SiteCohorts> Cohorts { get; private set; }
 
         /// <summary>
         /// The management area for each site.
@@ -83,7 +83,7 @@ namespace Landis.Library.HarvestManagement
         /// </summary>
         public static void Initialize()
         {
-            Cohorts = Model.Core.GetSiteVar<ISiteCohorts>("Succession.UniversalCohorts");
+            Cohorts = Model.Core.GetSiteVar<SiteCohorts>("Succession.UniversalCohorts");
 
             ManagementArea   = Model.Core.Landscape.NewSiteVar<ManagementArea>();
             Stand            = Model.Core.Landscape.NewSiteVar<Stand>();
